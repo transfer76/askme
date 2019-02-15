@@ -6,7 +6,7 @@ class User < ApplicationRecord
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+\.[a-z]+\z/i
-  VALID_USERNAME_REGEX = /\A(@*[A-Z]*[a-z]+\w*)\z/
+  VALID_USERNAME_REGEX = /\A(@*[A-Z]*[a-z]*\w*)\z/
 
   has_many :questions
 
@@ -14,6 +14,7 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX }
   validates :username, presence: true, uniqueness: true,
             format: { with: VALID_USERNAME_REGEX }, length: { maximum: 40 }
+  before_save { self.username = username.downcase }
 
   validates_presence_of :password, on: :create
   validates_confirmation_of :password
