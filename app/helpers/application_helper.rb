@@ -9,7 +9,6 @@ module ApplicationHelper
 end
 
 def sklonenie(number, krokodil, krokodila, krokodilov)
-
   if number == nil || !number.is_a?(Numeric)
     number = 0
   end

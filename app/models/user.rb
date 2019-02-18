@@ -6,7 +6,7 @@ class User < ApplicationRecord
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+\.[a-z]+\z/i
-  VALID_USERNAME_REGEX = /\A\w*\z/
+  VALID_USERNAME_REGEX = /\w+/
 
   has_many :questions
 
@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates_presence_of :password, on: :create
   validates_confirmation_of :password
 
-  before_save { self.email = email.downcase }
+  before_validation { self.email = email.downcase }
   before_save :encrypt_password
 
   def encrypt_password
@@ -27,8 +27,7 @@ class User < ApplicationRecord
 
       self.password_salt = User.hash_to_string(OpenSSL::Random.random_bytes(16))
 
-      self.password_hash = User.hash_to_string(
-        OpenSSL::PKCS5.pbkdf2_hmac(self.password, self.password_salt, ITERATIONS, DIGEST.length,DIGEST)
+      self.password_hash = User.hash_to_string(OpenSSL::PKCS5.pbkdf2_hmac(self.password, self.password_salt, ITERATIONS, DIGEST.length,DIGEST)
       )
     end
   end

@@ -37,13 +37,13 @@
 
 <div class="column-3-4">
   <div class="user-questions buffer-both">
-  	<div class="question-list">
+    <div class="question-list">
       <div class="questions-sklonenie text">
         У Вас <%=@questions.count %> <%= sklonenie(@questions.count, 'вопрос', 'вопроса', 'вопросов') %>
       </div>
-  	  <% @questions.each do |question| %>
+      <% @questions.each do |question| %>
         <%= render partial: 'questions/question', object: question %>
       <% end %>
-  	</div>
+    </div>
   </div>
 </div>
