@@ -9,8 +9,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save
-  end
+   
+     if @user.save
+       redirect_to root_url, notice: 'Пользователь успешно зарегистрирован!'
+     end
+   end
 
   def edit
   end
