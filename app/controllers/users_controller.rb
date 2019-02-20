@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   
   before_action :load_user, except: [:index, :create, :new]
+  before_action :authorize_user, except: [:index, :new, :create, :show]
 
   def index
     @users = User.all
@@ -31,8 +32,8 @@ class UsersController < ApplicationController
       redirect_to user_path(@user), notice: 'Данные обновлены'
     else
       render 'edit'
-    end  
-  end  
+    end
+  end
 
   def show
     @questions = @user.questions.order(created_at: :desc)
@@ -41,9 +42,13 @@ class UsersController < ApplicationController
 
   private
 
+  def authorize_user
+    reject_user unless @user == current_user 
+  end
+
   def load_user
     @user ||= User.find(params[:id])
-  end  
+  end
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation,
