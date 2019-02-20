@@ -6,6 +6,10 @@ module ApplicationHelper
       asset_path 'avatar.png'
     end
   end
+
+  def fa_icon(icon_class)
+    content_tag 'span', '', class: "fa fa-#{icon_class}"
+  end
 end
 
 def sklonenie(number, krokodil, krokodila, krokodilov)
