@@ -9,14 +9,14 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
       if @question.save
-        redirect_to user_path(@question.user), notice: 'Вопрос задан' 
+        redirect_to user_path(@question.user), notice: 'Вопрос задан'
       else
-        render :edit
+          render :edit
       end
     end
 
   def update
-     if @question.update(question_params)
+    if @question.update(question_params)
        redirect_to user_path(@question.user), notice: 'Вопрос сохранён'
      else
        render :edit

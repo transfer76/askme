@@ -15,8 +15,25 @@
     @<%= @user.username %>
   </h2>
 
-  <div class="user-ask-button container text-center">
-    <%= link_to "Спроси меня", '', class: 'button button-light', id: 'ask-button' %>
+  <div class="user-details">
+    <div class="user-ask-button container text-center">
+      <%= link_to "Спроси меня", '', class: 'button button-light', id: 'ask-button' %>
+    </div>
+
+    <div class="user-statistics container text-center">
+      <div class="column-1-3">
+        <h1 class="title-small"><%= @questions_count %></h1>
+        <p><%= sklonenie(@questions.count, 'вопрос', 'вопроса', 'вопросов') %></p>
+      </div>
+      <div class="column-1-3">
+        <h1 class="title-small"><%= @answers_count %></h1>
+        <p><%= sklonenie(@questions.count, 'ответ', 'ответа', 'ответов') %></p>
+      </div>
+      <div class="column-1-3">
+        <h1 class="title-small"><%= @unanswered_count %></h1>
+        <p><%= sklonenie(@questions.count, 'не отвеченный', 'не отвеченных', 'не отвеченных') %></p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -42,9 +59,6 @@
 <div class="column-3-4">
   <div class="user-questions buffer-both">
     <div class="question-list">
-      <div class="questions-sklonenie text">
-        У Вас <%=@questions.count %> <%= sklonenie(@questions.count, 'вопрос', 'вопроса', 'вопросов') %>
-      </div>
       <% @questions.each do |question| %>
         <%= render partial: 'questions/question', object: question %>
       <% end %>
