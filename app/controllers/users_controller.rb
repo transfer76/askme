@@ -42,8 +42,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = current_user
-    @user.destroy
+    @user.destroy if @user == current_user
     redirect_to root_url, notice: 'Пользователь удалён'
   end
 
