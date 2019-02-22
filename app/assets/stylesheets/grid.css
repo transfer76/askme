@@ -18,6 +18,9 @@
   margin-bottom: 20px;
   margin-top: 20px;
 }
+.buffer-both p  {
+  margin-bottom: 20px;
+}
 
 .buffer-both-large {
   margin-bottom: 40px;
