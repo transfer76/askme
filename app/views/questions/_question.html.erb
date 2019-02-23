@@ -16,6 +16,14 @@
     <div class="question-date">
       <%= l(question.created_at, format: :short) %>
     </div>
+
+      <div class="question-author">
+        <% if question.author.present? %>
+          <%= link_to question.author.username, user_path(question.author) %>
+        <% else %>
+          <%= 'Анонимный пользователь' %>
+      </div>
+    <% end %>
   </div>
 
   <% if question.user == current_user %>
