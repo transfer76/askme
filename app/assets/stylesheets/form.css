@@ -6,6 +6,11 @@
   margin-bottom: 10px;
 }
 
+.form-field-delete {
+  margin: 10px 0;
+  float: right;
+}
+
 .form-label {
   display: block;
   margin-bottom: 5px;
