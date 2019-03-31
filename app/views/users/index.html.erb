@@ -14,4 +14,8 @@
   <div class="buffer-both">
     <h2 class="title-medium">Хештеги:</h2>
   </div>
+
+  <% @hashtags.each do |hashtag| %>
+    <%= link_to hashtag.name, hashtag_url(hashtag) %><br>
+  <% end %>
 </div>
