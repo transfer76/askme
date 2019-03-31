@@ -3,4 +3,8 @@ class Hashtag < ApplicationRecord
   has_many :questions, through: :hashtags_questions
 
   validates :name, uniqueness: true
+
+  def to_param
+    name
+  end
 end
