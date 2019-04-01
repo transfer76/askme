@@ -16,6 +16,8 @@
   </div>
 
   <% @hashtags.each do |hashtag| %>
-    <%= link_to hashtag.name, hashtag_url(hashtag) %><br>
+    <span class="hashtag-link">
+      <%= link_to hashtag.name, hashtag_url(hashtag) %>
+    </span>
   <% end %>
 </div>
